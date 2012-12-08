@@ -27,7 +27,6 @@ class IdeasController < ApplicationController
 
   def new
     @idea = Idea.new
-    require 'pry'; binding.pry
     @idea.like = 0
     respond_to do |format|
       format.html # new.html.erb
