@@ -27,7 +27,8 @@ class IdeasController < ApplicationController
 
   def new
     @idea = Idea.new
-
+    require 'pry'; binding.pry
+    @idea.like = 0
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @idea }
@@ -70,6 +71,14 @@ class IdeasController < ApplicationController
       end
     end
   end
+
+  def increment_likes
+    @idea = Idea.find(params[:id])
+    @idea.like = @idea.like.succ
+    @idea.save!
+    redirect_to @idea
+  end
+
 
   # DELETE /ideas/1
   # DELETE /ideas/1.json
